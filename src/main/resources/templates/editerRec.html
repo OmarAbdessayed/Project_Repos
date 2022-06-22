@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template">
+<link rel="stylesheet" type="text/css"
+href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<head>
+<meta charset="utf-8">
+<title>Modifier des Reclamations</title>
+</head>
+<body>
+<div layout:fragment="Mycontent">
+<div class="container mt-5">
+<div class="card">
+<div class="card-header">
+Modifier des Reclamations
+</div>
+<div class="card-body">
+<form th:action="@{saveRec}" method="post">
+<div class="form-group">
+<label class="control-label" hidden>ID Rec :</label>
+<input type="hidden" name="idRec" class="form-control"
+th:value="${reclamation.idRec}" />
+</div>
+<div class="form-group">
+<label class="control-label">Nom Rec :</label>
+<input type="text" name="nomRec" class="form-control"  th:value="${reclamation.nomRec}"/>
+</div>
+<div class="form-group">
+<label class="control-label">Type Rec :</label>
+<input type="text" name="typeRec" class="form-control" th:value="${reclamation.typeRec}"/>
+</div>
+<div class="form-group">
+<label class="control-label">Type Salle :</label>
+<input type="text" name="typeSalle" class="form-control" th:value="${reclamation.typeSalle}"/>
+</div>
+<div class="form-group">
+<label class="control-label">Nom Salle :</label>
+<input type="text" name="nomSalle" class="form-control" th:value="${reclamation.nomSalle}"/>
+</div>
+<div class="form-group">
+<label class="control-label">Matiere :</label>
+<input type="text" name="matiere" class="form-control" th:value="${reclamation.matiere}"/>
+</div>
+<div class="form-group">
+<label class="control-label">Priorite :</label>
+<input type="text" name="priorite" class="form-control" th:value="${reclamation.priorite}"/>
+</div>
+<div class="form-group">
+<label class="control-label">Descriptif :</label>
+<input type="text" name="descriptif" class="form-control" th:value="${reclamation.descriptif}"/>
+</div>
+<div class="form-group">
+<label class="control-label">Date Pla :</label>
+<input type="date" name="datePla" class="form-control" th:value="${reclamation.datePla}"/>
+<span th:errors=${reclamation.datePla} class="text-danger"> </span>
+</div>
+</span>
+</div>
+<div>
+<button type="submit" class="btn btn-primary">Valider</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

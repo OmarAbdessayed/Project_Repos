@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template">
+<link rel="stylesheet" type="text/css"
+href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<head>
+<meta charset="utf-8">
+<title>Liste des Reclamations</title>
+</head>
+<body>
+<div layout:fragment="Mycontent">
+<div class="container mt-5">
+<div class="card">
+<div class="card-header">
+Liste des Reclamations
+</div>
+<div class="card-body">
+<table class="table table-striped">
+<tr>
+<th>ID</th><th>Nom Rec</th><th>Type Rec</th><th>Type Salle</th><th>Nom Salle</th><th>Matiere</th><th>Priorite</th><th>Descriptif</th><th>Date Planifiee</th>
+</tr>
+<tr th:each="p:${reclamations.content}">
+<td th:text="${p.idRec}"></td>
+<td th:text="${p.nomRec}"></td>
+<td th:text="${p.typeRec}"></td>
+<td th:text="${p.typeSalle}"></td>
+<td th:text="${p.nomSalle}"></td>
+<td th:text="${p.matiere}"></td>
+<td th:text="${p.priorite}"></td>
+<td th:text="${p.descriptif}"></td>
+<td th:text="${p.datePla}"></td>
+<td sec:authorize="hasRole('directeur')" ><a class="btn btn-danger" onclick="return confirm('Etes-vous sûr ?')"
+ th:href="@{supprimerRec(id=${p.idRec},
+page=${currentPage},size=${size})}">Supprimer</a>
+</td>
+<td sec:authorize="hasRole('directeur')"><a class="btn btn-success"
+ th:href="@{modifierRec(id=${p.idRec})}">Editer</a></td>
+</tr>
+</table>
+<ul class="nav nav-pills">
+<li th:each="page,status:${pages}">
+<a th:class="${status.index==currentPage?'btn btn-primary':'btn' }"
+ th:href="@{ ListeRecs(page=${status.index}, size=${size} ) }"
+ th:text="${status.index }"></a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
